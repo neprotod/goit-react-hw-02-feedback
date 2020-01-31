@@ -10,7 +10,7 @@ export default class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    staticstic: false,
+    statistic: false,
   };
 
   button = [
@@ -20,21 +20,21 @@ export default class App extends Component {
   ];
 
   changeFeedback = e => {
-    const label = String(e.target.dataset.label).toLowerCase();
+    const label = String(e.target.textContent).toLowerCase();
 
     // Validation
     if (this.state[label] === undefined) {
-      throw new Error(`No label ${label} to fidback`);
+      throw new Error(`No label ${label} to feedback`);
     }
 
     this.setState(state => ({
-      staticstic: true,
+      statistic: true,
       [label]: state[label] + 1,
     }));
   };
 
   render() {
-    const { bad, good, neutral, staticstic } = this.state;
+    const { bad, good, neutral, statistic } = this.state;
 
     const toStatistic = {
       bad,
@@ -43,10 +43,10 @@ export default class App extends Component {
     };
 
     return (
-      <div id="fidback">
+      <div id="feedback">
         <Feedback onFeedback={this.changeFeedback} options={this.button} />
-        <Section title="Staticstcs">
-          {(!staticstic && <Notification message="No feedback given" />) || (
+        <Section title="Statistic">
+          {(!statistic && <Notification message="No feedback given" />) || (
             <Statistics data={toStatistic} />
           )}
         </Section>

@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Feedback = ({ onFeedback, options }) => {
-  // eslint-disable-next-line react/prop-types
-  const button = options.map(item => {
-    return (
-      <button
-        key={item.dataLabel}
-        type="button"
-        onClick={onFeedback}
-        data-label={item.dataLabel}
-      >
-        {item.label}
-      </button>
-    );
-  });
-  return <div className="d-flex">{button}</div>;
-};
+const Feedback = ({ onFeedback, options }) => (
+  <div className="d-flex">
+    {options &&
+      options.map(item => (
+        <button
+          key={item.dataLabel}
+          type="button"
+          onClick={onFeedback}
+          data-label={item.dataLabel}
+        >
+          {item.label}
+        </button>
+      ))}
+  </div>
+);
 
 Feedback.propTypes = {
   onFeedback: PropTypes.func.isRequired,
